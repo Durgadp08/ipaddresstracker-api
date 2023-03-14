@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 let ip = null;
 app.get("/", (req, res) => {
    if(ip===null){
-    ip=req.headers('x-forwarded-for')|| req.socket.remoteAddress;
+    ip=req.header('x-forwarded-for')|| req.socket.remoteAddress;
   }
   http.get(`http://ip-api.com/json/${ip}`,response=>{
     response.on('data',data=>{
