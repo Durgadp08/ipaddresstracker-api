@@ -6,11 +6,8 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
-let ip = null;
+let ip = '';
 app.get("/", (req, res) => {
-   if(ip===null){
-    ip=req.header('x-forwarded-for')|| req.socket.remoteAddress;
-  }
   http.get(`http://ip-api.com/json/${ip}`,response=>{
     response.on('data',data=>{
       res.json(JSON.parse(data))
